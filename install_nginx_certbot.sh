@@ -5,10 +5,7 @@ echo "=== Обновление пакетов ==="
 sudo apt-get update
 sudo apt-get install -y ca-certificates curl software-properties-common lsb-release
 
-echo "=== Добавление репозитория Nginx ==="
-sudo add-apt-repository -y ppa:nginx/stable
-
-echo "=== Установка Nginx ==="
+echo "=== Установка Nginx (официальный репозиторий Ubuntu) ==="
 sudo apt-get update
 sudo apt-get install -y nginx
 
