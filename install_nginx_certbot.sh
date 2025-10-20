@@ -43,7 +43,7 @@ sudo tee $NGINX_CONF > /dev/null <<EOF
 server {
     listen 80;
     listen [::]:80;
-    server_name <домен>;
+    server_name ${DOMAIN};
 
     return 301 https://$host$request_uri;
 }
@@ -51,13 +51,16 @@ server {
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name <домен>;
+    server_name ${DOMAIN};
 
-    ssl_certificate /etc/letsencrypt/live/<домен>/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/<домен>/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
 
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers on;
+
+    access_log /var/log/nginx/${DOMAIN}_access.log;
+    error_log /var/log/nginx/${DOMAIN}_error.log;
 
     location / {
         proxy_pass http://127.0.0.1:8000;
