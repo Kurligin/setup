@@ -10,6 +10,6 @@ chmod +x ./install_docker.sh
 
 ## NGINX + Let`s Encrypt + Cert Bot
 ```bash
-chmod +x ./install_nginx_certbot.sh
-./install_nginx_certbot.sh
+chmod +x install_nginx_certbot.sh
+sudo ./install_nginx_certbot.sh example.com admin@example.com
 ```
