@@ -37,6 +37,7 @@ else
 fi
 
 echo "=== Создание Nginx-конфига для $DOMAIN ==="
+export DOMAIN
 NGINX_CONF="/etc/nginx/sites-available/$DOMAIN.conf"
 
 cat <<'EOF' | envsubst '${DOMAIN}' | sudo tee $NGINX_CONF > /dev/null
