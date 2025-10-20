@@ -39,7 +39,7 @@ fi
 echo "=== Создание Nginx-конфига для $DOMAIN ==="
 NGINX_CONF="/etc/nginx/sites-available/$DOMAIN.conf"
 
-cat <<'EOF' | envsubst '${DOMAIN}' | sudo tee $NGINX_CONF > /dev/null
+sudo tee $NGINX_CONF > /dev/null <<EOF
 server {
     listen 80;
     listen [::]:80;
@@ -74,6 +74,7 @@ server {
         proxy_send_timeout 300;
     }
 
+    # (опционально) Сжатие ответов
     gzip on;
     gzip_types application/json text/plain application/javascript text/css;
     gzip_min_length 256;
@@ -116,4 +117,4 @@ echo "✅ Установка завершена!"
 echo "Домен: $DOMAIN"
 echo "Email: $EMAIL"
 echo "Nginx конфиг: /etc/nginx/sites-available/$DOMAIN.conf"
-echo "Теперь твой API доступен по HTTPS через прокси на http://127.0.0.1:8000"
+echo "Теперь твой API доступен по HTTPS через прокси на http://127.0.0.1:8000"```
