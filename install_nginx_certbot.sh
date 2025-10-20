@@ -39,7 +39,7 @@ fi
 echo "=== Создание Nginx-конфига для $DOMAIN ==="
 NGINX_CONF="/etc/nginx/sites-available/$DOMAIN.conf"
 
-sudo tee $NGINX_CONF > /dev/null <<EOF
+cat <<'EOF' | envsubst '${DOMAIN}' | sudo tee $NGINX_CONF > /dev/null
 server {
     listen 80;
     listen [::]:80;
