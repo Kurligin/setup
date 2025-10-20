@@ -39,7 +39,7 @@ fi
 echo "=== Создание Nginx-конфига для $DOMAIN ==="
 NGINX_CONF="/etc/nginx/sites-available/$DOMAIN.conf"
 
-sudo tee $NGINX_CONF > /dev/null <<EOF
+sudo tee $NGINX_CONF > /dev/null <<'EOF'
 server {
     listen 80;
     listen [::]:80;
@@ -74,7 +74,6 @@ server {
         proxy_send_timeout 300;
     }
 
-    # (опционально) Сжатие ответов
     gzip on;
     gzip_types application/json text/plain application/javascript text/css;
     gzip_min_length 256;
